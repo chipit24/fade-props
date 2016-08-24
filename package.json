@@ -1,0 +1,37 @@
+{
+  "name": "fade-props",
+  "version": "0.1.0",
+  "engines": {
+    "node": ">=6.4.0"
+  },
+  "description": "A ReactJS component that seamlessly fades between the props it is provided; it fades one child out, removes it, then fades the next child in.",
+  "keywords": [],
+  "main": "FadeProps.js",
+  "scripts": {
+    "start": "webpack-dev-server --progress --inline --colors --content-base demo",
+    "build": "webpack",
+    "prepublish": "npm run build",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/chipit24/fade-props"
+  },
+  "author": "Robert Komaromi <robertkomaromi@gmail.com>",
+  "license": "ISC",
+  "devDependencies": {
+    "babel-core": "^6.7.7",
+    "babel-loader": "^6.2.4",
+    "babel-preset-es2015": "^6.6.0",
+    "babel-preset-react": "^6.5.0",
+    "babel-preset-stage-0": "^6.5.0",
+    "webpack": "^1.13.2",
+    "webpack-dev-server": "^1.15.0",
+    "webpack-merge": "^0.14.1",
+    "webpack-node-externals": "^1.3.3"
+  },
+  "dependencies": {
+    "react": "^15.0.1",
+    "react-dom": "^15.0.1"
+  }
+}
