@@ -1,7 +1,7 @@
 FadeProps
 =========
 
-A ReactJS component that seamlessly fades between the props it is provided; it fades one child out, removes it, then fades the next child in.
+A ReactJS component that seamlessly fades between the props it is provided; it fades one child out, removes it, then fades the next child in. `fade-props` uses CSS animations and doesn't rely on `react-addons-css-transition-group` or `react-addons-transition-group`
 
 ![fade-props animation](https://s11.postimg.io/pvga62kir/fade_props.gif)
 
