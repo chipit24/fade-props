@@ -4,3 +4,5 @@ FadeProps.js
 demo/js/
 .tern-project
 index.js
+npm-debug.log
+.npmignore
