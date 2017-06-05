@@ -7,6 +7,12 @@ A ReactJS component that seamlessly fades between the props it is provided; it f
 
 #### Installation
 
+Using yarn:
+```js
+yarn add fade-props
+```
+
+Using npm:
 ```js
 npm i -S fade-props
 ```
@@ -17,6 +23,8 @@ Import the component:
 ```js
 import FadeProps from 'fade-props';
 ```
+This is a UMD build, so "require" and "global" methods are also supported.
+
 Place your child component inside `FadeProps`:
 ```jsx
 <FadeProps>{childComponent}</FadeProps>
@@ -27,6 +35,6 @@ The `FadeProps` component accepts an `animationLength` prop which you can set to
 
 #### Running the demo
 
-Clone the repository and `cd` into it, run `npm i` to install all dependencies, then run `npm start` to start the webpack dev server. Visit `http://localhost:8080` in your browser to view the demo.
+Clone the repository and `cd` into it, run `npm i` (or `yarn install`) to install all dependencies, then run `npm start` to start the webpack dev server. Visit `http://localhost:8080` in your browser to view the demo.
 
 Any contributions and feedback are welcome.

@@ -3,31 +3,42 @@ import FadeProps from './fade-props';
 
 class App extends Component {
   state = {
+    selected: 0,
     components: [
       <div key="one">One</div>,
-      <div key="two">Two</div>
-    ],
-    toggle: false
+      <div key="two">Two</div>,
+      <div key="three">Three</div>
+    ]
   };
-
-  toggleComponent = () => {
-    this.setState({
-      toggle: !this.state.toggle
-    });
-  };
-
-  componentDidMount() {
-    setInterval(this.toggleComponent, 2000);
+  
+  selectComponent(selected) {
+    this.setState({ selected });
   }
-
+  
   render() {
-    const { components, toggle } = this.state;
-
+    const { components, selected } = this.state;
+    
     return (
       <div className="App">
-        <FadeProps>
-          { components[+toggle] }
+        <FadeProps animationLength={2000}>
+          { components[selected] }
         </FadeProps>
+        
+        <button onClick={this.selectComponent.bind(this, 0)}>
+          Load One
+        </button>
+        
+        <button onClick={this.selectComponent.bind(this, 1)}>
+          Load Two
+        </button>
+        
+        <button onClick={this.selectComponent.bind(this, 2)}>
+          Load Three
+        </button>
+        
+        <button onClick={this.selectComponent.bind(this)}>
+          Unload
+        </button>
       </div>
     );
   }

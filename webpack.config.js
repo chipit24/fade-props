@@ -1,7 +1,6 @@
 const path = require('path');
 const merge = require('webpack-merge');
 const nodeExternals = require('webpack-node-externals');
-const validate = require('webpack-validator');
 const TARGET = process.env.npm_lifecycle_event;
 
 let config = {};
@@ -12,16 +11,11 @@ let common_config = {
     path: path.join(__dirname, 'demo/js'),
     publicPath: '/js/'
   },
-  externals: {
-    'react/addons': true,
-    'react/lib/ExecutionEnvironment': true,
-    'react/lib/ReactContext': true
-  },
   module: {
-    loaders: [{
+    rules: [{
       test: /\.jsx?$/,
-      exclude: /(node_modules|\.c9)/,
-      loader: 'babel'
+      exclude: /node_modules/,
+      loader: 'babel-loader'
     }]
   }
 };
@@ -43,8 +37,9 @@ switch (TARGET) {
     
   case 'start':
     config = merge(common_config, {
-      cache: true,
-      debug: true,
+      devServer: {
+        contentBase: path.join(__dirname, 'demo')
+      },
       devtool: 'source-map'
     });
     break;
@@ -53,4 +48,4 @@ switch (TARGET) {
     config = common_config;
 }
 
-module.exports = validate(config);
+module.exports = config;
