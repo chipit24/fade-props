@@ -9,14 +9,14 @@ class FadeProps extends Component {
     children: PropTypes.element,
     animationLength: PropTypes.number
   };
-  
+
   constructor(props) {
     super(props);
-    
+
     const currentChild = props.children
       ? React.Children.only(props.children)
       : null;
-    
+
     this.state = {
       animationLength: props.animationLength || DEFAULT_ANIMATION_LENGTH,
       currentChild,
@@ -24,32 +24,32 @@ class FadeProps extends Component {
       * if fading in, we set the opacity to 1 */
       direction: currentChild ? FADE.IN : FADE.OUT
     };
-    
+
     this.nextChild = null;
     this.timeoutId = null;
   }
-  
+
   componentWillUnmount() {
     clearTimeout(this.timeoutId);
   }
-  
+
   componentDidUpdate(prevProps, prevState) {
     if (prevProps.children !== this.props.children) {
       this.nextChild = this.props.children
         ? React.Children.only(this.props.children)
         : null;
-      
+
       this.fade();
     }
   }
-  
+
   fade() {
     /*  Fade immediately if there is no current child */
     if (!this.state.currentChild) {
       this.queueNextChild();
       return;
     }
-    
+
     /* If timeoutId is not set, then no fade is currently in progress, so let's
      * start the fade! */
     if (!this.timeoutId) {
@@ -57,7 +57,7 @@ class FadeProps extends Component {
       this.setState(({direction}) => ({ direction: +!direction }));
       return;
     }
-    
+
     if (this.nextChild === this.state.currentChild) {
       clearTimeout(this.timeoutId);
       this.timeoutId = null;
@@ -65,21 +65,21 @@ class FadeProps extends Component {
       return;
     }
   }
-  
+
   queueNextChild = () => {
     const currentChild = this.nextChild;
     this.nextChild = null;
     this.timeoutId = null;
-    
+
     this.setState(({direction}) => ({
       ...(currentChild ? {direction: +!direction} : {}),
       currentChild
     }));
   };
-  
+
   render() {
     const { direction, animationLength, currentChild } = this.state;
-    
+
     return (
       <div
         className={this.props.className}
