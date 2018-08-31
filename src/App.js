@@ -17,7 +17,7 @@ class App extends Component {
   }
 
   handleAnimationLengthChange(event) {
-    this.setState({ animationLength: event.target.value });
+    this.setState({ animationLength: Number(event.target.value) });
   }
   
   render() {
@@ -49,7 +49,7 @@ class App extends Component {
           <label htmlFor="animation-length" style={{ marginRight: 10 }}>Animation Length</label>
           <input
             id="animation-length"
-            type="integer"
+            type="number"
             value={this.state.animationLength}
             onChange={this.handleAnimationLengthChange.bind(this)}
           />
