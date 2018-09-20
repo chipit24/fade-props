@@ -42,12 +42,12 @@ test('removes the old child and renders the next child after 1000ms', () => {
   const first = <div key="first">First</div>;
   const second = <div key="second">Second</div>;
   
-  const fadeProps = ReactDOM.render(<FadeProps animationLength={1000}>{first}</FadeProps>, node);
+  const fadeProps = ReactDOM.render(<FadeProps>{first}</FadeProps>, node);
   const fadePropsNode = ReactDOM.findDOMNode(fadeProps);
   
   expect(fadePropsNode.textContent).toBe('First');
   
-  ReactDOM.render(<FadeProps>{second}</FadeProps>, node)
+  ReactDOM.render(<FadeProps animationLength={1000}>{second}</FadeProps>, node)
   expect(fadePropsNode.textContent).not.toBe('Second');
   
   jest.runAllTimers();

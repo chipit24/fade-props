@@ -10,6 +10,10 @@ class FadeProps extends Component {
     animationLength: PropTypes.number
   };
 
+  static defaultProps = {
+    animationLength: DEFAULT_ANIMATION_LENGTH
+  };
+
   constructor(props) {
     super(props);
 
@@ -18,7 +22,6 @@ class FadeProps extends Component {
       : null;
 
     this.state = {
-      animationLength: props.animationLength || DEFAULT_ANIMATION_LENGTH,
       currentChild,
       /* Direction determines the opacity; if fading out, we set the opacity to 0,
       * if fading in, we set the opacity to 1 */
@@ -53,7 +56,7 @@ class FadeProps extends Component {
     /* If timeoutId is not set, then no fade is currently in progress, so let's
      * start the fade! */
     if (!this.timeoutId) {
-      this.timeoutId = setTimeout(this.queueNextChild, this.state.animationLength);
+      this.timeoutId = setTimeout(this.queueNextChild, this.props.animationLength);
       this.setState(({direction}) => ({ direction: +!direction }));
       return;
     }
@@ -78,7 +81,8 @@ class FadeProps extends Component {
   };
 
   render() {
-    const { direction, animationLength, currentChild } = this.state;
+    const { direction, currentChild } = this.state;
+    const { animationLength } = this.props;
 
     return (
       <div
